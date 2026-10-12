@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Wizardry.Desktop.ViewModels"
+             xmlns:c="using:Wizardry.Desktop.Controls"
+             xmlns:s="using:Wizardry.Core.Screens"
+             x:Class="Wizardry.Desktop.Views.TitleView"
+             x:DataType="vm:TitleViewModel">
+    <Grid>
+        <c:PictureView Pane="{x:Static s:Pane.Title}" Opacity="0.55" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6" Width="440">
+            <Border Background="#E005060A" BorderBrush="{StaticResource PanelBorder}" BorderThickness="1" CornerRadius="4" Padding="28,22">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="AVAWIZARDRY" Classes="h1" HorizontalAlignment="Center" />
+                    <TextBlock Text="THE PROVING GROUNDS OF THE MAD ARCHMAGE" Classes="retro" FontSize="20" Foreground="{StaticResource Accent}" HorizontalAlignment="Center" />
+                    <TextBlock Text="After the 1981 classic" Foreground="{StaticResource InkDim}" HorizontalAlignment="Center" Margin="0,0,0,12" />
+                    <Button Classes="menu" Content="Continue  (C)" Command="{Binding ContinueCommand}" IsEnabled="{Binding CanContinue}" />
+                    <TextBlock Text="{Binding SaveSummary}" Foreground="{StaticResource InkDim}" TextWrapping="Wrap" FontSize="12" HorizontalAlignment="Center" TextAlignment="Center" />
+                    <Button Classes="menu" Content="New game with a ready-made party  (R)" Command="{Binding QuickStartCommand}" Margin="0,10,0,4" />
+                    <Button Classes="menu" Content="New game: make your own characters  (N)" Command="{Binding NewGameCommand}" />
+                    <Border IsVisible="{Binding ConfirmNew}" Classes="panel" Margin="0,6">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Starting a new game replaces the saved one, roster and all. Are you sure?" TextWrapping="Wrap" Foreground="{StaticResource Gold}" />
+                            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                <Button Content="Yes, start anew (Y)" Command="{Binding ConfirmYesCommand}" />
+                                <Button Content="No (Esc)" Command="{Binding ConfirmNoCommand}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Grid ColumnDefinitions="*,8,*,8,*" Margin="0,10,0,0">
+                        <Button Grid.Column="0" Classes="menu" Content="Settings (S)" Command="{Binding SettingsCommand}" />
+                        <Button Grid.Column="2" Classes="menu" Content="Help (H)" Command="{Binding HelpCommand}" />
+                        <Button Grid.Column="4" Classes="menu" Content="Quit (Q)" Command="{Binding QuitCommand}" />
+                    </Grid>
+                    <TextBlock Text="{Binding Problem}" IsVisible="{Binding Problem, Converter={x:Static ObjectConverters.IsNotNull}}" Foreground="{StaticResource DangerBrush}" TextWrapping="Wrap" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding AudioNote}" IsVisible="{Binding AudioNote, Converter={x:Static ObjectConverters.IsNotNull}}" Foreground="{StaticResource InkDim}" TextWrapping="Wrap" FontSize="12" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

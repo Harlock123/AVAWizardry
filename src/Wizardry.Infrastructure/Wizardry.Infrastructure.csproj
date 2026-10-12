@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Persistence, settings and per-user storage locations. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Wizardry.Core\Wizardry.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Wizardry.Desktop.ViewModels"
+             x:Class="Wizardry.Desktop.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+    <Border Classes="panel" Margin="40" MaxWidth="760">
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,12,0,0">
+                <Button Content="Save" Command="{Binding SaveCommand}" />
+                <Button Content="Cancel (Esc)" Command="{Binding CancelCommand}" />
+            </StackPanel>
+            <ScrollViewer>
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Settings" Classes="h2" />
+                    <TextBlock Text="Display" Classes="retro" FontSize="22" Foreground="{StaticResource Gold}" />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Interface size" VerticalAlignment="Center" Width="160" />
+                        <Slider Minimum="0.8" Maximum="1.6" Value="{Binding UiScale}" Width="260" TickFrequency="0.1" IsSnapToTickEnabled="True" />
+                        <TextBlock Text="{Binding UiScale, StringFormat='{}{0:P0}'}" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <CheckBox Content="Show the automap in the maze (the original left mapping to graph paper)" IsChecked="{Binding ShowAutomap}" />
+                    <TextBlock Text="Rules for new games" Classes="retro" FontSize="22" Foreground="{StaticResource Gold}" Margin="0,8,0,0" />
+                    <CheckBox Content="Rescue patrols: a fallen party is carried home to the temple" IsChecked="{Binding RescuePatrols}" />
+                    <TextBlock Text="Off is the classic rule: the bodies lie where they fell until another of your parties carries them out."
+                               Foreground="{StaticResource InkDim}" TextWrapping="Wrap" FontSize="12" Margin="28,0,0,0" />
+                    <TextBlock Text="Sound" Classes="retro" FontSize="22" Foreground="{StaticResource Gold}" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding AudioStatus}" Foreground="{StaticResource InkDim}" />
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <CheckBox Content="Sound effects" IsChecked="{Binding SoundEnabled}" />
+                        <CheckBox Content="Music" IsChecked="{Binding MusicEnabled}" />
+                        <CheckBox Content="Ambience" IsChecked="{Binding AmbienceEnabled}" />
+                    </StackPanel>
+                    <Grid ColumnDefinitions="160,260" RowDefinitions="Auto,Auto,Auto,Auto">
+                        <TextBlock Text="Master" VerticalAlignment="Center" />
+                        <Slider Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding MasterVolume}" />
+                        <TextBlock Grid.Row="1" Text="Effects" VerticalAlignment="Center" />
+                        <Slider Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding EffectsVolume}" />
+                        <TextBlock Grid.Row="2" Text="Music" VerticalAlignment="Center" />
+                        <Slider Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding MusicVolume}" />
+                        <TextBlock Grid.Row="3" Text="Ambience" VerticalAlignment="Center" />
+                        <Slider Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding AmbienceVolume}" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Effects pack" VerticalAlignment="Center" Width="160" />
+                        <ComboBox ItemsSource="{Binding EffectsPacks}" SelectedItem="{Binding EffectsPack}" Width="420" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Music pack" VerticalAlignment="Center" Width="160" />
+                        <ComboBox ItemsSource="{Binding MusicPacks}" SelectedItem="{Binding MusicPack}" Width="420" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Audio buffer" VerticalAlignment="Center" Width="160" />
+                        <ComboBox ItemsSource="{Binding BufferChoices}" SelectedItem="{Binding AudioBuffer}" Width="420" />
+                    </StackPanel>
+                    <TextBlock Text="A larger buffer smooths choppy sound in virtual machines. It takes effect the next time the game starts."
+                               Foreground="{StaticResource InkDim}" TextWrapping="Wrap" FontSize="12" />
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Border>
+</UserControl>

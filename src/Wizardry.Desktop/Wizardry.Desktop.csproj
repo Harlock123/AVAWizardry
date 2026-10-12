@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AssemblyName>AVAWizardry</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <!-- Sound packs and ambience ship as loose files so players can add their own (see CREDITS). -->
+    <Content Include="soundpacks\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="ambience\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wizardry.Core\Wizardry.Core.csproj" />
+    <ProjectReference Include="..\Wizardry.Infrastructure\Wizardry.Infrastructure.csproj" />
+    <ProjectReference Include="..\Wizardry.Audio\Wizardry.Audio.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Wizardry.Desktop.Tests" />
+  </ItemGroup>
+</Project>

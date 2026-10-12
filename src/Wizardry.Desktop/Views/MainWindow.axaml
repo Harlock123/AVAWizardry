@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Wizardry.Desktop.ViewModels"
+        xmlns:v="using:Wizardry.Desktop.Views"
+        x:Class="Wizardry.Desktop.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="AVAWizardry"
+        Width="1180" Height="780" MinWidth="900" MinHeight="600"
+        Background="{StaticResource WindowBrush}">
+    <LayoutTransformControl>
+        <LayoutTransformControl.LayoutTransform>
+            <ScaleTransform ScaleX="{Binding UiScale}" ScaleY="{Binding UiScale}" />
+        </LayoutTransformControl.LayoutTransform>
+        <ContentControl Content="{Binding Current}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="vm:TitleViewModel"><v:TitleView /></DataTemplate>
+                <DataTemplate DataType="vm:GameViewModel"><v:GameView /></DataTemplate>
+                <DataTemplate DataType="vm:SettingsViewModel"><v:SettingsView /></DataTemplate>
+                <DataTemplate DataType="vm:HelpViewModel"><v:HelpView /></DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+    </LayoutTransformControl>
+</Window>

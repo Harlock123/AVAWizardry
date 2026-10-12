@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game itself: rules, content, the maze, combat, the town and the menu screens. No UI dependency. -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="Wizardry.Core.Tests" />
+    <InternalsVisibleTo Include="Wizardry.Desktop.Tests" />
+  </ItemGroup>
+</Project>

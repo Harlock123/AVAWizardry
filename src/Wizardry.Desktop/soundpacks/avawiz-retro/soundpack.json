@@ -1,0 +1,95 @@
+{
+  "name": "AVAWizardry retro (synthesised)",
+  "author": "Made for AVAWizardry (tools/retro_audio.py)",
+  "license": "CC0 1.0 Public Domain Dedication",
+  "source": "tools/retro_audio.py in this repository",
+  "sounds": {
+    "BREATH": [
+      "breath.wav"
+    ],
+    "BUMP": [
+      "bump.wav"
+    ],
+    "COINS": [
+      "coins.wav"
+    ],
+    "CONFUSED": [
+      "confused.wav"
+    ],
+    "DEATH": [
+      "death.wav"
+    ],
+    "DOOR": [
+      "door.wav"
+    ],
+    "DRAIN": [
+      "drain.wav"
+    ],
+    "DRINK": [
+      "drink.wav"
+    ],
+    "ENCOUNTER": [
+      "encounter.wav"
+    ],
+    "FALL": [
+      "fall.wav"
+    ],
+    "GONG": [
+      "gong.wav"
+    ],
+    "HIT": [
+      "hit.wav"
+    ],
+    "HURT": [
+      "hurt.wav"
+    ],
+    "INN": [
+      "inn.wav"
+    ],
+    "KILL": [
+      "kill.wav"
+    ],
+    "LEVEL": [
+      "level.wav"
+    ],
+    "LEVEL_DOWN": [
+      "level_down.wav"
+    ],
+    "MISS": [
+      "miss.wav"
+    ],
+    "PARALYZED": [
+      "paralyzed.wav"
+    ],
+    "SHOCK": [
+      "shock.wav"
+    ],
+    "SPELL": [
+      "spell.wav"
+    ],
+    "STAIRS": [
+      "stairs.wav"
+    ],
+    "STEP": [
+      "step.wav"
+    ],
+    "TELEPORT": [
+      "teleport.wav"
+    ],
+    "THRONE": [
+      "throne.wav"
+    ],
+    "TRAP": [
+      "trap.wav"
+    ],
+    "TREASURE": [
+      "treasure.wav"
+    ],
+    "TURN": [
+      "turn.wav"
+    ]
+  },
+  "volumes": {
+    "STEP": 0.35
+  }
+}

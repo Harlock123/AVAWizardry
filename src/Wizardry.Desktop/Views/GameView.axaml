@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Wizardry.Desktop.ViewModels"
+             xmlns:c="using:Wizardry.Desktop.Controls"
+             x:Class="Wizardry.Desktop.Views.GameView"
+             x:DataType="vm:GameViewModel">
+    <Grid RowDefinitions="*,Auto" Margin="12">
+        <Grid ColumnDefinitions="Auto,12,*">
+            <!-- The picture: the maze ahead, the castle, the foe or the treasure. -->
+            <StackPanel Spacing="6">
+                <Border Classes="panel" Padding="4" Width="500" Height="500">
+                    <Grid>
+                        <c:MazeView Game="{Binding Game}" Version="{Binding Version}" IsVisible="{Binding IsMaze}" />
+                        <c:PictureView Game="{Binding Game}" Version="{Binding Version}" Pane="{Binding Pane}" Place="{Binding Place}"
+                                       IsVisible="{Binding !IsMaze}" />
+                    </Grid>
+                </Border>
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="{Binding Footer}" Classes="retro" FontSize="22" Foreground="{StaticResource Gold}" />
+                    <TextBlock Grid.Column="1" Text="F1 help   F2 settings" Classes="retro" FontSize="18" Foreground="{StaticResource InkDim}" VerticalAlignment="Center" />
+                </Grid>
+            </StackPanel>
+
+            <!-- The words and the choices. -->
+            <Border Grid.Column="2" Classes="panel">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Title}" Classes="h2" Margin="0,0,0,6" />
+                    <TextBlock DockPanel.Dock="Bottom" Text="{Binding Problem}" IsVisible="{Binding Problem, Converter={x:Static ObjectConverters.IsNotNull}}"
+                               Foreground="{StaticResource DangerBrush}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                    <ItemsControl DockPanel.Dock="Bottom" ItemsSource="{Binding Options}" Margin="0,8,0,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:OptionView">
+                                <Button Classes="action" Command="{Binding ChooseCommand}" IsEnabled="{Binding Enabled}">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <TextBlock Text="{Binding KeyLabel}" Classes="retro" FontSize="18" Foreground="{StaticResource Gold}" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding Label}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" IsVisible="{Binding HasPrompt}" Margin="0,8,0,0">
+                        <TextBlock Text="{Binding Prompt}" Classes="retro" FontSize="20" Foreground="{StaticResource Accent}" VerticalAlignment="Center" />
+                        <TextBox x:Name="Input" Text="{Binding InputText}" Width="240" FontFamily="{StaticResource RetroFont}" FontSize="20" />
+                        <Button Content="OK (Enter)" Command="{Binding SubmitCommand}" />
+                    </StackPanel>
+                    <!-- The automap sits beside the text while the party walks the maze. -->
+                    <Border DockPanel.Dock="Right" IsVisible="{Binding ShowAutomap}" Width="250" Height="250" VerticalAlignment="Top"
+                            Margin="10,0,0,0" BorderBrush="{StaticResource PanelBorder}" BorderThickness="1" Background="#05060A">
+                        <c:AutomapView Game="{Binding Game}" Version="{Binding Version}" />
+                    </Border>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LineView">
+                                    <TextBlock Text="{Binding Text}" Foreground="{Binding Brush}" Classes="retro" FontSize="20" TextWrapping="Wrap" MinHeight="20" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+        </Grid>
+
+        <!-- The party, as the classic table. -->
+        <Border Grid.Row="1" Classes="panel" Margin="0,10,0,0" Padding="12,6">
+            <StackPanel MinHeight="158">
+                <Grid ColumnDefinitions="36,240,100,60,120,*">
+                    <TextBlock Text="#" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                    <TextBlock Grid.Column="1" Text="CHARACTER NAME" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                    <TextBlock Grid.Column="2" Text="CLASS" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                    <TextBlock Grid.Column="3" Text="AC" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                    <TextBlock Grid.Column="4" Text="HITS" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                    <TextBlock Grid.Column="5" Text="STATUS" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}" />
+                </Grid>
+                <TextBlock Text="(no party: add members at the tavern)" Classes="retro" FontSize="20" Foreground="{StaticResource InkDim}"
+                           IsVisible="{Binding !Roster.Count}" />
+                <ItemsControl ItemsSource="{Binding Roster}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:RosterRow">
+                            <Grid ColumnDefinitions="36,240,100,60,120,*">
+                                <TextBlock Text="{Binding Index}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                                <TextBlock Grid.Column="2" Text="{Binding Class}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                                <TextBlock Grid.Column="3" Text="{Binding Ac}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                                <TextBlock Grid.Column="4" Text="{Binding Hits}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                                <TextBlock Grid.Column="5" Text="{Binding Status}" Classes="retro" FontSize="21" Foreground="{Binding Brush}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

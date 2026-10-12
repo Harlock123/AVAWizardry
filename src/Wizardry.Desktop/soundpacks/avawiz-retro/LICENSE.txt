@@ -1,0 +1,3 @@
+AVAWizardry retro sound effects: synthesised for AVAWizardry by tools/retro_audio.py (adapted from
+the author's AVAGard; no samples, nothing taken from any original game). Released under CC0 1.0
+(public domain dedication): https://creativecommons.org/publicdomain/zero/1.0/

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <ProjectReference Include="..\..\src\Wizardry.Core\Wizardry.Core.csproj" />
+    <ProjectReference Include="..\..\src\Wizardry.Infrastructure\Wizardry.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Wizardry.Audio\Wizardry.Audio.csproj" />
+  </ItemGroup>
+</Project>

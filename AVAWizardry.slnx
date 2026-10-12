@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Wizardry.Audio/Wizardry.Audio.csproj" />
+    <Project Path="src/Wizardry.Core/Wizardry.Core.csproj" />
+    <Project Path="src/Wizardry.Desktop/Wizardry.Desktop.csproj" />
+    <Project Path="src/Wizardry.Infrastructure/Wizardry.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Wizardry.Core.Tests/Wizardry.Core.Tests.csproj" />
+    <Project Path="tests/Wizardry.Desktop.Tests/Wizardry.Desktop.Tests.csproj" />
+  </Folder>
+</Solution>
