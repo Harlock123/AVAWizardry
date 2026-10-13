@@ -7,14 +7,15 @@ namespace Wizardry.Audio;
 /// </summary>
 public static class AudioBuffer
 {
-    public const string Automatic = "auto", Small = "small", Medium = "medium", Large = "large";
+    public const string Automatic = "auto", Small = "small", Medium = "medium", Large = "large", ExtraLarge = "xlarge";
 
     public static readonly IReadOnlyList<(string Id, string Label)> Choices =
     [
-        (Automatic, "Automatic (large in a virtual machine)"),
+        (Automatic, "Automatic (extra large in a virtual machine)"),
         (Small, "Small — lowest latency"),
         (Medium, "Medium (1024 frames, about 21 ms)"),
-        (Large, "Large (2048 frames, about 43 ms) — smooth in virtual machines"),
+        (Large, "Large (2048 frames, about 43 ms)"),
+        (ExtraLarge, "Extra large (4096 frames, about 85 ms) — smoothest in virtual machines"),
     ];
 
     /// <summary>The period for a choice (0 = OpenAL's default).</summary>
@@ -23,7 +24,8 @@ public static class AudioBuffer
         Small => 0,
         Medium => 1024,
         Large => 2048,
-        _ => inVirtualMachine ? 2048 : 0,
+        ExtraLarge => 4096,
+        _ => inVirtualMachine ? 4096 : 0,
     };
 }
 
